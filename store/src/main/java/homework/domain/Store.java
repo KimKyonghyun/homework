@@ -34,7 +34,10 @@ public class Store {
     private String orderStatus;
 
     @PostPersist
-    public void onPostPersist() {
+    public void onPostPersist() {}
+
+    @PostUpdate
+    public void onPostUpdate() {
         OrderReceived orderReceived = new OrderReceived(this);
         orderReceived.publishAfterCommit();
 

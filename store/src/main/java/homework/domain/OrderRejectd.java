@@ -11,6 +11,13 @@ public class OrderRejectd extends AbstractEvent {
 
     private Long id;
     private String orderStatus;
+    private String storeId;
+    private String menuId;
+    private String menuName;
+    private Integer qty;
+    private String userId;
+    private String userName;
+    private String userAddr;
 
     public OrderRejectd(Store aggregate) {
         super(aggregate);

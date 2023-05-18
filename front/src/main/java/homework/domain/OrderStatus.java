@@ -13,4 +13,9 @@ public class OrderStatus {
     @Id
     //@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+
+    private String storeId;
+    private String oderStatus;
+    private String userId;
+    private String userName;
 }
