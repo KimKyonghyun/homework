@@ -50,11 +50,13 @@ public class Delivery {
 
     public void startDelivery() {
         DeliveryStarted deliveryStarted = new DeliveryStarted(this);
+        deliveryStarted.setOrderStatus("Delivery Started");
         deliveryStarted.publishAfterCommit();
     }
 
     public void completeDelivery() {
         DeliveryEnded deliveryEnded = new DeliveryEnded(this);
+        deliveryEnded.setOrderStatus("Delivery Completed");
         deliveryEnded.publishAfterCommit();
     }
 
