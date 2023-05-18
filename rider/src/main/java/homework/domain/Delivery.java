@@ -30,13 +30,15 @@ public class Delivery {
 
     private String userAddr;
 
+    private Integer qty;
+
     @PostPersist
     public void onPostPersist() {}
 
     @PostUpdate
     public void onPostUpdate() {
-        DeliveryRequested deliveryRequested = new DeliveryRequested(this);
-        deliveryRequested.publishAfterCommit();
+        //DeliveryRequested deliveryRequested = new DeliveryRequested(this);
+        //deliveryRequested.publishAfterCommit();
     }
 
     public static DeliveryRepository repository() {
@@ -57,19 +59,27 @@ public class Delivery {
     }
 
     public static void searchDelivery(CookingEnded cookingEnded) {
-        /** Example 1:  new item 
+        // Example 1:  new item 
         Delivery delivery = new Delivery();
+        delivery.setUserId(cookingEnded.getUserId());
+        delivery.setUserName(cookingEnded.getUserName());
+        delivery.setUserAddr(cookingEnded.getUserAddr());
+        delivery.setStoreId(cookingEnded.getStoreId());
+        delivery.setMenuId(cookingEnded.getMenuId());
+        delivery.setMenuName(cookingEnded.getMenuName());
+        delivery.setQty(cookingEnded.getQty());
+        delivery.setOrderStatus("Delivery Started");
         repository().save(delivery);
 
         DeliveryRequested deliveryRequested = new DeliveryRequested(delivery);
         deliveryRequested.publishAfterCommit();
-        */
+        
 
         /** Example 2:  finding and process
         
-        repository().findById(cookingEnded.get???()).ifPresent(delivery->{
+        repository().findById(cookingEnded.getId()).ifPresent(delivery->{
             
-            delivery // do something
+            delivery.setOrderStatus("Delivery Started"); // do something
             repository().save(delivery);
 
             DeliveryRequested deliveryRequested = new DeliveryRequested(delivery);

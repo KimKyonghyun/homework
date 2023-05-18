@@ -38,11 +38,11 @@ public class Store {
 
     @PostUpdate
     public void onPostUpdate() {
-        OrderReceived orderReceived = new OrderReceived(this);
-        orderReceived.publishAfterCommit();
+        //OrderReceived orderReceived = new OrderReceived(this);
+        //orderReceived.publishAfterCommit();
 
-        OrderCanceled orderCanceled = new OrderCanceled(this);
-        orderCanceled.publishAfterCommit();
+        //OrderCanceled orderCanceled = new OrderCanceled(this);
+        //orderCanceled.publishAfterCommit();
     }
 
     public static StoreRepository repository() {
@@ -73,13 +73,21 @@ public class Store {
     }
 
     public static void receiveOrder(OrderPlaced orderPlaced) {
-        /** Example 1:  new item 
+        // Example 1:  new item 
         Store store = new Store();
+        store.setUserId(orderPlaced.getUserId());
+        store.setUserName(orderPlaced.getUserName());
+        store.setUserAddr(orderPlaced.getUserAddr());
+        store.setStoreId(orderPlaced.getStoreId());
+        store.setMenuId(orderPlaced.getMenuId());
+        store.setMenuName(orderPlaced.getMenuName());
+        store.setQty(orderPlaced.getQty());
+        store.setOrderStatus("Order Received");
         repository().save(store);
 
         OrderReceived orderReceived = new OrderReceived(store);
         orderReceived.publishAfterCommit();
-        */
+
 
         /** Example 2:  finding and process
         
