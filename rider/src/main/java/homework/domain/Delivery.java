@@ -31,7 +31,10 @@ public class Delivery {
     private String userAddr;
 
     @PostPersist
-    public void onPostPersist() {
+    public void onPostPersist() {}
+
+    @PostUpdate
+    public void onPostUpdate() {
         DeliveryRequested deliveryRequested = new DeliveryRequested(this);
         deliveryRequested.publishAfterCommit();
     }
